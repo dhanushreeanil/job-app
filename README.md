@@ -1,13 +1,5 @@
 # USER JOB APPLICATION
-A front-end app for submission job application form and review of the application by employer.
+A front-end app for submission job application form and review of the application by employee.
 
 
-🛠 Technologies
 
-💻 JavaScript | ES6
-
-🌐 ReactJS
-
-🔧 Git 
-
-📦 react-router-dom, axios
