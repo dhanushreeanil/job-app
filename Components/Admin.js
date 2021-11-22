@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import swal from 'sweetalert'
+import * as ReactBootStrap from "react-bootstrap"
 
 const Admin = (props) => {
     
@@ -47,7 +48,7 @@ const Admin = (props) => {
             })
             console.log('candidateJob', full)
             setJob(full)
-             handleToggle()
+            handleToggle()
         }
     }
     const handleDetails = (candidate) =>{
@@ -68,13 +69,7 @@ const Admin = (props) => {
             })
         setDetail(result)
     }
-    // const handleShortlist = (candidate) =>{
-    //     setShortlist("shortlisted")
-    // }
-    // const handleReject = (candidate) =>{
-    //     setReject("Rejected")
-    // }
-
+    
     useEffect(()=>{
         axios.get(`http://dct-application-form.herokuapp.com/users/application-forms`)
             .then(response=>{
@@ -96,18 +91,18 @@ const Admin = (props) => {
             <button value = "MEAN Stack Developer" onClick = { handleJob }> MEAN Stack Developer </button> 
             <button value = "FULL Stack Developer" onClick = { handleJob }> FULL Stack Developer </button>
             { isClicked && (<div>
-               <h3> { jobTitle } </h3>
+               <h4> { jobTitle } </h4>
                <h5> List of candidates applied for { jobTitle } - { job.length } </h5>
-                <table border = "1" style = {{ "borderCollapse" : "collapse", "width" : "100%" }} >
+                <ReactBootStrap.Table striped bordered hover className="table">
                     <thead>
                         <th >
-                            <tr style = {{ "width" : "20%" }}>
-                                <td style = {{ "width" : "15%" }}>Name</td>
-                                <td style = {{ "width" : "20%" }}>Technical Skills</td>
-                                <td style = {{ "width" : "20%" }}>Experience</td>
-                                <td style = {{ "width" : "20%" }}>Applied Date</td>
-                                <td style = {{ "width" : "10%" }}>View Details</td>
-                                <td style = {{ "width" : "15%" }}>Update Application Status</td>
+                            <tr>
+                                <td >Name</td>
+                                <td >Technical Skills</td>
+                                <td >Experience</td>
+                                <td >Applied Date</td>
+                                <td >View Details</td>
+                                <td >Update Application Status</td>
                             </tr>
                         </th>
                     </thead>
@@ -115,39 +110,30 @@ const Admin = (props) => {
                         <tr>
                             {   job.map(candidate => {
                                 return (<div>
-                                    <td style = {{ "width" : "15%" }}>{ candidate.name }</td>
-                                    <td style = {{ "width" : "20%" }}> { candidate.skills } </td>
-                                    <td style = {{ "width" : "20%" }}> { candidate.experience } </td>
-                                    <td style = {{ "width" : "20%" }}> { candidate.createdAt } </td>
-                                    <td style = {{ "width" : "10%" }}> <button style = {{ backgroundColor: "gray", color: "white" }} 
-                                        onClick = {() => { handleDetails(candidate) }}> view details </button> </td>
-                                    <td style = {{ "width" : "15%" }}> 
-                                        {/* <button onClick = {()=>{ handleShortlist(candidate) }} */}
-                                        <button 
-                                         style = {{ backgroundColor: "green", color: "white", width : "50%", fontSize : "11px" }}>
-                                             { candidate.status === 'shortlisted' ? "shortlisted" : "shortlist" } 
+                                    <td >{ candidate.name }</td>
+                                    <td > { candidate.skills } </td>
+                                    <td > { candidate.experience } </td>
+                                    <td > { candidate.createdAt } </td>
+                                    <td> <button  
+                                        onClick = {() => { handleDetails(candidate) }}> view details 
                                         </button>
-                                        {/* <button onClick = {() => { handleReject( candidate ) }} */}
-                                        <button
-                                            style = {{ backgroundColor: "red", color: "white", width : "50%", fontSize : "11px" }}>
-                                             { candidate.status === "rejected" ? "rejected" : "reject" } 
+                                    </td>
+                                    <td > 
+                                        <button  disabled={candidate.status === "shortlisted"}>
+                                             shortlisted
+                                        </button>
+                                        <button disabled={candidate.status === "rejected"}>
+                                             rejected 
                                         </button>
                                     </td>
                                 </div>)
                             }) }
                         </tr>
                     </tbody>
-                </table>
+                </ReactBootStrap.Table>
             </div>) }
         </div>
     )
 }
 
 export default Admin
-
-{/* <button style = {{ backgroundColor: "green", color: "white" }}> 
-                                        { candidate.status === 'shortlisted' ?  } 
-                                        </button>
-                                        <button style = {{ backgroundColor: "red", color: "white" }} 
-                                            onClick = { handleReject } 
-                                        > reject </button> */}

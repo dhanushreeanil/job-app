@@ -65,53 +65,65 @@ const ApplicationForm = (props) => {
     }
 
     return (
-        <div>
+        <div className="container-fluid p-3">
             <h2> Apply for Job </h2>
             <form onSubmit = { handleSubmit }>
                 <label> Fullname </label>
-                <input type="text"
+                <input className="form-control"
+                    type="text"
                     value = { name } 
                     onChange = { handleChange }
                     name="name"
-                /><hr/>
+                />
 
                 <label> Email </label>
-                <input type="text" 
+                <input className="form-control"
+                    type="text" 
                     value = { email } 
                     onChange = { handleChange } 
                     name="email"
-                /><hr/>
+                />
 
                 <label> Contact phone </label>
-                <input type="text" 
+                <input className="form-control"
+                    type="text" 
                     value = { phone } 
                     onChange = { handleChange } 
                     name="phone"
-                /><hr/>
+                />
 
                 <label> Applying for job </label>
-                <select value = { jobTitle } onChange = { handleChange } name="jobTitle" required = { true } >
+                <select className="form-control"
+                    value = { jobTitle } 
+                    onChange = { handleChange } 
+                    name="jobTitle" 
+                    required = { true } 
+                >
                     <option value = ""> Select </option> 
                     <option value = "Front-End Developer"> Front-End Developer </option> 
                     <option value = "Node.js Developer"> Node.js Developer </option> 
                     <option value = "MEAN Stack Developer"> MEAN Stack Developer </option> 
                     <option value = "FULL Stack Developer"> FULL Stack Developer </option> 
-                </select><hr/>
+                </select>
 
                 <label>Experience</label>
-                <input type="text" 
+                <input className="form-control"
+                    type="text" 
                     value = { experience } 
                     onChange = { handleChange } 
                     name="experience"
-                /><hr/>
+                />
 
                 <label> Technical Skills </label>
-                <textarea value = { skills } 
+                <textarea className="form-control"
+                    value = { skills } 
                     onChange = { handleChange }
                     name="skills"
-                ></textarea><hr/>
+                ></textarea>
 
-                <input type="submit" value = "Send Application" />
+                <input className="btn btn-success" 
+                    type="submit" 
+                    value = "Send" />
             </form>
         </div>
     )
